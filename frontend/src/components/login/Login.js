@@ -89,8 +89,7 @@ const Login = () => {
           />
         </div>
         <GoogleOAuthProvider
-          clientId="308002675488-atob5tp4gc8ialafed71dh26sdqmh2ur.apps.googleusercontent.com
-"
+          clientId="308002675488-atob5tp4gc8ialafed71dh26sdqmh2ur.apps.googleusercontent.com"
         >
           <GoogleLogin
             onSuccess={handleGoogleLoginSuccess}
@@ -100,19 +99,19 @@ const Login = () => {
         <button
           type="submit"
           className="btn btn-primary"
-          onChange={() => {
-            setEmail("guset@gmail.com");
+          onClick={() => {
+            setEmail("guest@gmail.com");
             setPassword("123");
           }}
         >
-          try website
+          Try Website
         </button>
         <div className="mb-3">
           <Link to="/register">Register</Link>
         </div>
         <button type="submit" className="btn btn-primary">
           Submit
-        </button>{" "}
+        </button>
       </form>
     </div>
   );
