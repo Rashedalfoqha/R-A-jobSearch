@@ -97,22 +97,22 @@ const Login = () => {
             onError={handleGoogleLoginError}
           />
         </GoogleOAuthProvider>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          onChange={() => {
+            setEmail("guset@gmail.com");
+            setPassword("123");
+          }}
+        >
+          try website
+        </button>
         <div className="mb-3">
           <Link to="/register">Register</Link>
         </div>
         <button type="submit" className="btn btn-primary">
           Submit
         </button>{" "}
-        <button
-          type="submit"
-          className="btn btn-primary"
-          onChange={() => {
-           setEmail("guset@gmail.com")
-           setPassword("123")
-          }}
-        >
-          try website
-        </button>
       </form>
     </div>
   );
