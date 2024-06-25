@@ -41,8 +41,8 @@ const Post = () => {
     axios
       .get("https://ra-job.onrender.com//post/get", {
         headers: {
-          authorization: `Bearer ${token}`,
-        },
+          authorization: `Bearer ${token}`
+        }
       })
       .then((result) => {
         setPost(result.data.posts);
@@ -96,12 +96,12 @@ const Post = () => {
                               "https://ra-job.onrender.com//post",
                               {
                                 description: newPostDescription,
-                                photo: url,
+                                photo: url
                               },
                               {
                                 headers: {
-                                  authorization: `Bearer ${token}`,
-                                },
+                                  authorization: `Bearer ${token}`
+                                }
                               }
                             )
                             .then((result) => {
@@ -248,12 +248,12 @@ const Post = () => {
                                 .post(
                                   `https://ra-job.onrender.com//post/${elem._id}/comments/`,
                                   {
-                                    comment: comment,
+                                    comment: comment
                                   },
                                   {
                                     headers: {
-                                      authorization: `Bearer ${token}`,
-                                    },
+                                      authorization: `Bearer ${token}`
+                                    }
                                   }
                                 )
                                 .then((result) => {
@@ -265,9 +265,9 @@ const Post = () => {
                                           comment: [
                                             ...element.comment,
                                             {
-                                              comment: comment,
-                                            },
-                                          ],
+                                              comment: comment
+                                            }
+                                          ]
                                         }
                                       : element
                                   );
@@ -292,8 +292,8 @@ const Post = () => {
                                     `https://ra-job.onrender.com//post/delete/${elem._id}`,
                                     {
                                       headers: {
-                                        authorization: `Bearer ${token}`,
-                                      },
+                                        authorization: `Bearer ${token}`
+                                      }
                                     }
                                   )
                                   .then((result) => {
@@ -321,12 +321,12 @@ const Post = () => {
                                       .put(
                                         `https://ra-job.onrender.com//post/update/${elem._id}`,
                                         {
-                                          description: description,
+                                          description: description
                                         },
                                         {
                                           headers: {
-                                            authorization: `Bearer ${token}`,
-                                          },
+                                            authorization: `Bearer ${token}`
+                                          }
                                         }
                                       )
                                       .then((result) => {
@@ -337,7 +337,7 @@ const Post = () => {
                                             element._id === elem._id
                                               ? {
                                                   ...element,
-                                                  description: description,
+                                                  description: description
                                                 }
                                               : element
                                         );

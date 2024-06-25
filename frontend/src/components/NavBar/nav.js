@@ -17,15 +17,15 @@ const Search = styled("div")(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: alpha(theme.palette.common.white, 0.25)
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
-    width: "auto",
-  },
+    width: "auto"
+  }
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
@@ -35,7 +35,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   pointerEvents: "none",
   display: "flex",
   alignItems: "center",
-  justifyContent: "center",
+  justifyContent: "center"
 }));
 
 const SearchInput = styled(InputBase)(({ theme }) => ({
@@ -46,9 +46,9 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
+      width: "20ch"
+    }
+  }
 }));
 const handleSearchChange = (event) => {
   console.log("Performing search for:", searchTerm);
@@ -62,71 +62,75 @@ const Nav = () => {
     isLoggedIn,
     userPersonal,
     searchTerm,
-    setSearchTerm,
+    setSearchTerm
   } = useContext(userContext);
 
   return (
-    <AppBar position="static" color="inherit" className="marg">
-      <Toolbar>
-        <img
-          src="https://i.ibb.co/tDmLH5H/logo.png"
-          alt="Logo"
-          className="logo"
-        />
+    <>
+      {isLoggedIn && (
+        <AppBar position="static" color="inherit" className="marg">
+          <Toolbar>
+            <img
+              src="https://i.ibb.co/tDmLH5H/logo.png"
+              alt="Logo"
+              className="logo"
+            />
 
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link to="/" className="nav-link">
-            <AiFillHome className="home" />
-          </Link>
-        </Typography>
-        <Search>
-          <SearchIconWrapper>
-            <CiSearch />
-          </SearchIconWrapper>
-          <SearchInput
-            placeholder="Search"
-            inputProps={{ "aria-label": "search" }}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </Search>
-
-        <Button color="inherit" to="/newJob"></Button>
-        <Button color="inherit">
-          <Link to="about">
-            <PiWarningCircleFill className="con" />
-          </Link>
-        </Button>
-        <Button color="inherit">
-          <Link to="/job">
-            <FaMessage className="con" />
-          </Link>
-        </Button>
-        <Button color="inherit">
-          <Link to="/login">
-            {userPersonal.photo ? (
-              <img
-                src={userPersonal.photo}
-                className="rounded-circle mr-2"
-                width="20"
-                height="20"
-                alt="User"
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Link to="/" className="nav-link">
+                <AiFillHome className="home" />
+              </Link>
+            </Typography>
+            <Search>
+              <SearchIconWrapper>
+                <CiSearch />
+              </SearchIconWrapper>
+              <SearchInput
+                placeholder="Search"
+                inputProps={{ "aria-label": "search" }}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
-            ) : (
-              <IoIosContact className="con" />
-            )}
-          </Link>
-        </Button>
-        <Button
-          onClick={() => {
-            logout();
-          }}
-        >
-          {" "}
-          <RiLogoutCircleRLine />
-        </Button>
-      </Toolbar>
-    </AppBar>
+            </Search>
+
+            <Button color="inherit" to="/newJob"></Button>
+            <Button color="inherit">
+              <Link to="about">
+                <PiWarningCircleFill className="con" />
+              </Link>
+            </Button>
+            <Button color="inherit">
+              <Link to="/job">
+                <FaMessage className="con" />
+              </Link>
+            </Button>
+            <Button color="inherit">
+              <Link to="/login">
+                {userPersonal.photo ? (
+                  <img
+                    src={userPersonal.photo}
+                    className="rounded-circle mr-2"
+                    width="20"
+                    height="20"
+                    alt="User"
+                  />
+                ) : (
+                  <IoIosContact className="con" />
+                )}
+              </Link>
+            </Button>
+            <Button
+              onClick={() => {
+                logout();
+              }}
+            >
+              {" "}
+              <RiLogoutCircleRLine />
+            </Button>
+          </Toolbar>
+        </AppBar>
+      )}
+    </>
   );
 };
 

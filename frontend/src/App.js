@@ -1,5 +1,5 @@
 import "./App.css";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import Register from "./components/register/register";
@@ -51,6 +51,7 @@ function App() {
   const filteredJobs = dashBoard.filter((elem) =>
     elem.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  const navigate = useNavigate();
   const logout = () => {
     setToken("");
     setUserId("");
@@ -58,6 +59,7 @@ function App() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     localStorage.removeItem("userId");
+    navigate("/login")
   };
 
   return (
@@ -111,7 +113,7 @@ function App() {
           UserDetail,
           setUserDetail,
           dashBoard,
-          setDashBoard,
+          setDashBoard
         }}
       >
         <div className="App">

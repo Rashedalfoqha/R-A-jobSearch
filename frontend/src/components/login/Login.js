@@ -9,12 +9,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const {
-    setToken,
-    setIsLoggedIn,
-    setUserId,
-    setUserPersonal,
-  } = useContext(userContext);
+  const { setToken, setIsLoggedIn, setUserId, setUserPersonal } =
+    useContext(userContext);
   const navigate = useNavigate();
 
   const handleGoogleLoginSuccess = (credentialResponse) => {
@@ -35,7 +31,7 @@ const Login = () => {
     axios
       .post("https://ra-job.onrender.com/register/login", {
         Email: email,
-        password: password,
+        password: password
       })
       .then((result) => {
         const token = result.data.token;
@@ -57,7 +53,11 @@ const Login = () => {
 
   return (
     <div className="d-flex align-items-center justify-content-center vh-100">
-      <form className="login p-5 bg-light rounded" id="login" onSubmit={handleFormSubmit}>
+      <form
+        className="login p-5 bg-light rounded"
+        id="login"
+        onSubmit={handleFormSubmit}
+      >
         <h2 className="text-center mb-4">Login</h2>
         {error && <div className="alert alert-danger">{error}</div>}
         <div className="mb-3">
@@ -88,7 +88,10 @@ const Login = () => {
             required
           />
         </div>
-        <GoogleOAuthProvider clientId="308002675488-atob5tp4gc8ialafed71dh26sdqmh2ur.apps.googleusercontent.com">
+        <GoogleOAuthProvider
+          clientId="308002675488-atob5tp4gc8ialafed71dh26sdqmh2ur.apps.googleusercontent.com
+"
+        >
           <GoogleLogin
             onSuccess={handleGoogleLoginSuccess}
             onError={handleGoogleLoginError}
@@ -99,6 +102,35 @@ const Login = () => {
         </div>
         <button type="submit" className="btn btn-primary">
           Submit
+        </button>{" "}
+        <button
+          type="submit"
+          className="btn btn-primary"
+          onClick={() => {
+            axios
+              .post("https://ra-job.onrender.com/register/login", {
+                Email: "guset@gmail.com",
+                password: "123"
+              })
+              .then((result) => {
+                const token = result.data.token;
+                localStorage.setItem("token", token);
+                setToken(token);
+                const userId = result.data.userId;
+                localStorage.setItem("userId", userId);
+                setUserId(userId);
+                const user = result.data.user;
+                localStorage.setItem("user", JSON.stringify(user));
+                setUserPersonal(user);
+                setIsLoggedIn(true);
+                navigate("/");
+              })
+              .catch(() => {
+                setError("Login failed. Please check your email or password.");
+              });
+          }}
+        >
+          try website
         </button>
       </form>
     </div>
