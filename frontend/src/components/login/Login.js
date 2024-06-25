@@ -106,28 +106,9 @@ const Login = () => {
         <button
           type="submit"
           className="btn btn-primary"
-          onClick={() => {
-            axios
-              .post("https://ra-job.onrender.com/register/login", {
-                Email: "guset@gmail.com",
-                password: "123"
-              })
-              .then((result) => {
-                const token = result.data.token;
-                localStorage.setItem("token", token);
-                setToken(token);
-                const userId = result.data.userId;
-                localStorage.setItem("userId", userId);
-                setUserId(userId);
-                const user = result.data.user;
-                localStorage.setItem("user", JSON.stringify(user));
-                setUserPersonal(user);
-                setIsLoggedIn(true);
-                navigate("/");
-              })
-              .catch(() => {
-                setError("Login failed. Please check your email or password.");
-              });
+          onChange={() => {
+           setEmail("guset@gmail.com")
+           setPassword("123")
           }}
         >
           try website
